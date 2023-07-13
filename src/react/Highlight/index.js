@@ -23,7 +23,7 @@ export function setDefaultStyles(style: Style, className: ClassName): void {
   defaultClassName = className
 }
 
-const Highlight: NTComponent<Props> = (props) => {
+const Highlight: React$StatelessFunctionalComponent<Props> = (props) => {
   const { text, indices, style, className } = props
 
   if (!indices) {

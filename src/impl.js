@@ -72,7 +72,7 @@ function matchesFuzzily(
         queryWords
           .map((word) => {
             const wordIndex = normalizedItem.indexOf(word)
-            return [wordIndex, wordIndex + word.length - 1]
+            return ([wordIndex, wordIndex + word.length - 1]: FuzzyRangeTuple)
           })
           .sort(sortRangeTuple),
       ]
@@ -287,12 +287,12 @@ export function fuzzySearchImpl<Element>(
       if (getText) {
         texts = getText(element)
       } else {
-        // $FlowFixMe
+        // $FlowFixMe[incompatible-use]
         const text: string = options.key ? element[options.key] : (element: any)
         texts = [text]
       }
 
-      const preprocessedTexts = texts.map((text) => {
+      const preprocessedTexts: [string, string, Set<string>][] = texts.map((text) => {
         const item = text || ''
         const normalizedItem = normalizeText(item)
         const itemWords = new Set(normalizedItem.split(' '))
