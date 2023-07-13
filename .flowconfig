@@ -1,0 +1,26 @@
+[ignore]
+<PROJECT_ROOT>/.cache
+<PROJECT_ROOT>/src/__tests__
+<PROJECT_ROOT>/dist
+<PROJECT_ROOT>/dev
+<PROJECT_ROOT>/examples
+.*/node_modules/react\-native/.*
+.*/node_modules/resolve/test/resolver/**
+
+[include]
+
+[libs]
+; flow-typed/
+
+[options]
+server.max_workers=8
+emoji=true
+merge_timeout=120
+react.runtime=automatic
+exact_by_default=false
+
+# fixes Flow on ARM
+sharedmemory.heap_size=4000000000
+
+[version]
+>=0.199.0

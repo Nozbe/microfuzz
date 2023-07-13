@@ -1,0 +1,67 @@
+{
+  "name": "@nozbe/microfuzz",
+  "description": "A tiny library for fuzzy search",
+  "version": "0.1.5",
+  "scripts": {
+    "up": "yarn",
+    "ci:check": "concurrently -n 'test,eslint,flow' -c 'auto' 'npm run test' 'npm run eslint' 'npm run flow' --kill-others-on-fail",
+    "ci": "npm run ci:check",
+    "flow": "flow check --max-warnings=0 --color=always",
+    "eslint": "eslint ./src -c ./.eslintrc.js --cache --cache-location ./.cache/.eslintcache",
+    "test": "jest"
+  },
+  "keywords": [
+    "fuzzy search",
+    "command palette",
+    "jump to",
+    "autocomplete",
+    "react"
+  ],
+  "author": {
+    "name": "Radek Pietruszewski",
+    "email": "this.is@radex.io",
+    "url": "https://radex.io"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nozbe/microfuzz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nozbe/microfuzz/issues"
+  },
+  "homepage": "https://github.com/Nozbe/microfuzz#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/plugin-transform-flow-strip-types": "^7.22.5",
+    "@babel/plugin-transform-react-jsx": "^7.21.0",
+    "@babel/preset-env": "^7.22.9",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "chalk": "^4.1.0",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^7.6.0",
+    "eslint": "^8.34.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "flow-bin": "0.201.0",
+    "jest": "^29",
+    "patch-package": "^6.5.1",
+    "prettier": "^2.8.8",
+    "react": "^18.2.0",
+    "react-native": "^0.72.3",
+    "typescript": "^4.5.0"
+  }
+}
