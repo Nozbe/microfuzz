@@ -15,13 +15,7 @@ type Props = $Exact<{
 
 const FullSelection: FuzzyHighlightIndices = [[0, Number.MAX_VALUE]]
 
-let defaultStyle: Style = { backgroundColor: 'rgba(245,220,0,.25)' }
-let defaultClassName: ClassName
-
-export function setDefaultStyles(style: Style, className: ClassName): void {
-  defaultStyle = style
-  defaultClassName = className
-}
+const defaultStyle: Style = { backgroundColor: 'rgba(245,220,0,.25)' }
 
 const Highlight: React$StatelessFunctionalComponent<Props> = (props) => {
   const { text, indices, style, className } = props
@@ -49,11 +43,7 @@ const Highlight: React$StatelessFunctionalComponent<Props> = (props) => {
       )
     }
     nodes.push(
-      <TextElement
-        style={style ?? defaultStyle}
-        className={className ?? defaultClassName}
-        key={`${start}-${end}`}
-      >
+      <TextElement style={style ?? defaultStyle} className={className} key={`${start}-${end}`}>
         {text.slice(start, end + 1)}
       </TextElement>,
     )
@@ -67,13 +57,24 @@ const Highlight: React$StatelessFunctionalComponent<Props> = (props) => {
   return nodes
 }
 
-type HighlighterExport = React$ComponentType<Props> &
+type HighlightExport = React$ComponentType<Props> &
   $Exact<{
     FullSelection: typeof FullSelection,
   }>
 
-const Export: HighlighterExport = Object.assign((memo(Highlight): any), {
+const ExportedHighlight: HighlightExport = Object.assign((memo(Highlight): any), {
   FullSelection,
 })
 
-export default Export
+export default ExportedHighlight
+
+export function createHighlightComponent(
+  customStyle: Style,
+  customClassName: ClassName,
+): HighlightExport {
+  const HighlightComponent = ({ style, className, ...props }: Props) =>
+    Highlight({ ...props, style: style ?? customStyle, className: className ?? customClassName })
+  HighlightComponent.FullSelection = FullSelection
+  // $FlowFixMe
+  return HighlightComponent
+}
