@@ -4,7 +4,7 @@ import { type FuzzyResult, type FuzzySearchStrategy } from '../index'
 export type UseFuzzySearchListOptions<T, U> = {
   list: T[]
   key?: string
-  getText?: (item: T) => Array<?string>
+  getText?: (item: T) => Array<string | null>
   queryText: string
   mapResultItem: (result: FuzzyResult<T>) => U
   strategy?: FuzzySearchStrategy

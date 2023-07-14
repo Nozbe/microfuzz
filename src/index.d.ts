@@ -45,7 +45,7 @@ export type HighlightRanges = Range[]
  * List of fuzzy search matches (ranges of matching characters) for an item. This usually has one item, but can have more if `getText`
  * was used to return multiple strings for an item.
  */
-export type FuzzyMatches = Array<?HighlightRanges>
+export type FuzzyMatches = Array<HighlightRanges | null>
 
 /**
  * Result of fuzzy matching `queryText` against an item.
@@ -65,7 +65,7 @@ export type FuzzySearchStrategy = 'off' | 'smart' | 'aggressive'
 
 export type FuzzySearchOptions = {
   key?: string
-  getText?: (unknown) => Array<?string>
+  getText?: (unknown) => Array<string | null>
   strategy?: FuzzySearchStrategy
 }
 
@@ -96,7 +96,7 @@ export type FuzzySearcher<T> = (string) => Array<FuzzyResult<T>>
  */
 export default function createFuzzySearch<Element>(
   list: Element[],
-  options?: FuzzySearchOptions = {},
+  options?: FuzzySearchOptions,
 ): FuzzySearcher<Element>
 
 /**
@@ -104,6 +104,6 @@ export default function createFuzzySearch<Element>(
  *
  * Use `createFuzzySearch` whenever you have a list of items to search.
  */
-export function fuzzyMatch(text: string, queryText: string): ?FuzzyResult<string>
+export function fuzzyMatch(text: string, queryText: string): FuzzyResult<string> | null
 
 export { default as normalizeText } from './normalizeText'

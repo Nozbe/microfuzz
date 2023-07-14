@@ -4,9 +4,10 @@
   "version": "0.1.5",
   "scripts": {
     "up": "yarn",
-    "ci:check": "concurrently -n 'test,eslint,flow' -c 'auto' 'npm run test' 'npm run eslint' 'npm run flow' --kill-others-on-fail",
+    "ci:check": "concurrently -n 'test,eslint,flow,ts' -c 'auto' 'npm run test' 'npm run eslint' 'npm run flow' 'npm run ts' --kill-others-on-fail",
     "ci": "npm run ci:check",
     "flow": "flow check --max-warnings=0 --color=always",
+    "ts": "tsc",
     "eslint": "eslint ./src -c ./.eslintrc.js --cache --cache-location ./.cache/.eslintcache",
     "test": "jest",
     "build": "rm -fr dist && babel src --out-dir dist --ignore 'src/__tests__' --copy-files --no-copy-ignored"

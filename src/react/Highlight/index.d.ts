@@ -1,17 +1,17 @@
 import { FunctionComponent } from 'react'
 import type { HighlightRanges } from '../../index'
 
-type Style = ?{ [key: string]: any }
-type ClassName = ?string
+type Style = { [key: string]: any } | null | undefined
+type ClassName = string | null | undefined
 
 type Props = {
   text: string
-  ranges: ?HighlightRanges
+  ranges: HighlightRanges | null
   style?: Style
   className?: ClassName
 }
 
-const FullSelection: HighlightRanges
+declare const FullSelection: HighlightRanges
 
 /**
  * Highlights `text` at `ranges`.
@@ -21,7 +21,7 @@ const FullSelection: HighlightRanges
  *
  * To higlight all of text, pass `ranges={Highlight.FullSelection}`.
  */
-const Highlight: FunctionComponent<Props> & {
+declare const Highlight: FunctionComponent<Props> & {
   FullSelection: typeof FullSelection
 }
 export default Highlight
