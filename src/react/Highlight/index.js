@@ -1,6 +1,6 @@
 // @flow
 import React, { memo, Fragment, type Node } from 'react'
-import { type FuzzyHighlightIndices } from '../../index'
+import { type HighlightRanges } from '../../index'
 import { TextElement } from './platform'
 
 type Style = ?{ [string]: mixed }
@@ -8,12 +8,12 @@ type ClassName = ?string
 
 type Props = $Exact<{
   text: string,
-  indices: ?FuzzyHighlightIndices,
+  indices: ?HighlightRanges,
   style?: Style,
   className?: ClassName,
 }>
 
-const FullSelection: FuzzyHighlightIndices = [[0, Number.MAX_VALUE]]
+const FullSelection: HighlightRanges = [[0, Number.MAX_VALUE]]
 
 const defaultStyle: Style = { backgroundColor: 'rgba(245,220,0,.25)' }
 
@@ -75,6 +75,6 @@ export function createHighlightComponent(
   const HighlightComponent = ({ style, className, ...props }: Props) =>
     Highlight({ ...props, style: style ?? customStyle, className: className ?? customClassName })
   HighlightComponent.FullSelection = FullSelection
-  // $FlowFixMe
+  // $FlowFixMe[incompatible-exact]
   return HighlightComponent
 }

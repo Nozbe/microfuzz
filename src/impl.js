@@ -2,19 +2,19 @@
 /* eslint-disable no-continue */
 import normalizeText from './normalizeText'
 import type {
-  FuzzyRangeTuple,
+  Range,
   FuzzySearcher,
   FuzzySearchOptions,
   FuzzySearchStrategy,
   FuzzyResult,
-  FuzzyHighlightIndices,
+  HighlightRanges,
   FuzzyMatches,
 } from './index'
 
 const { MAX_SAFE_INTEGER } = Number
 
 const sortByScore = <T>(a: FuzzyResult<T>, b: FuzzyResult<T>): number => a.score - b.score
-const sortRangeTuple = (a: FuzzyRangeTuple, b: FuzzyRangeTuple): number => a[0] - b[0]
+const sortRangeTuple = (a: Range, b: Range): number => a[0] - b[0]
 
 const validWordBoundaries = new Set('  []()-–—\'"“”'.split(''))
 
@@ -30,7 +30,7 @@ function matchesFuzzily(
   normalizedQuery: string,
   queryWords: string[],
   strategy: FuzzySearchStrategy,
-): ?[number, FuzzyHighlightIndices] {
+): ?[number, HighlightRanges] {
   // quick matches
   if (item === query) {
     return [0, [[0, item.length - 1]]]
@@ -72,7 +72,7 @@ function matchesFuzzily(
         queryWords
           .map((word) => {
             const wordIndex = normalizedItem.indexOf(word)
-            return ([wordIndex, wordIndex + word.length - 1]: FuzzyRangeTuple)
+            return ([wordIndex, wordIndex + word.length - 1]: Range)
           })
           .sort(sortRangeTuple),
       ]
@@ -97,13 +97,13 @@ function matchesFuzzily(
 export function aggressiveFuzzyMatch(
   normalizedItem: string,
   normalizedQuery: string,
-): ?[number, FuzzyHighlightIndices] {
+): ?[number, HighlightRanges] {
   const normalizedItemLen = normalizedItem.length
   const normalizedQueryLen = normalizedQuery.length
 
   let queryIdx = 0
   let queryChar = normalizedQuery[queryIdx]
-  const indices: FuzzyHighlightIndices = []
+  const indices: HighlightRanges = []
   let chunkFirstIdx = -1
   let chunkLastIdx = -2
   // TODO: May improve performance by early exits (less to go than remaining query)
@@ -134,7 +134,7 @@ export function aggressiveFuzzyMatch(
 export function experimentalSmartFuzzyMatch(
   normalizedItem: string,
   normalizedQuery: string,
-): ?[number, FuzzyHighlightIndices] {
+): ?[number, HighlightRanges] {
   const normalizedItemLen = normalizedItem.length
 
   // Match by consecutive letters, but only match beginnings of words or chunks of 3+ letters
@@ -147,7 +147,7 @@ export function experimentalSmartFuzzyMatch(
   //         ___^^^ (better match)
   // But we want to limit the algorithmic complexity and this should generally work.
 
-  const indices: FuzzyHighlightIndices = []
+  const indices: HighlightRanges = []
   let queryIdx = 0
   let queryChar = normalizedQuery[queryIdx]
   let chunkFirstIdx = -1
@@ -206,9 +206,9 @@ export function experimentalSmartFuzzyMatch(
 }
 
 function scoreConsecutiveLetters(
-  indices: FuzzyHighlightIndices,
+  indices: HighlightRanges,
   normalizedItem: string,
-): ?[number, FuzzyHighlightIndices] {
+): ?[number, HighlightRanges] {
   // Score: 2 + sum of chunk scores
   // Chunk scores:
   // - 0.2 for a full word

@@ -33,10 +33,10 @@ Note:
 
 */
 
-export type FuzzyRangeTuple = [/* first index */ number, /* last index */ number]
-export type FuzzyHighlightIndices = FuzzyRangeTuple[]
-export type FuzzyMatches = Array<?FuzzyHighlightIndices>
+export type Range = [/* first index */ number, /* last index */ number]
+export type HighlightRanges = Range[]
 
+export type FuzzyMatches = Array<?HighlightRanges>
 export type FuzzyResult<T> = $Exact<{
   item: T,
   score: number /* lower = better match (think "error level") */,
@@ -57,14 +57,14 @@ export type FuzzySearchOptions = $Exact<{
 export type FuzzySearcher<T> = (string) => Array<FuzzyResult<T>>
 
 export default function createFuzzySearch<Element>(
-  collection: Element[],
+  list: Element[],
   options?: FuzzySearchOptions = ({}: any),
 ): FuzzySearcher<Element> {
-  return require('./impl').createFuzzySearchImpl(collection, options)
+  return require('./impl').createFuzzySearchImpl(list, options)
 }
 
-export function fuzzyMatch(text: string, query: string): ?FuzzyResult<string> {
-  return require('./impl').fuzzyMatchImpl(text, query)
+export function fuzzyMatch(text: string, queryText: string): ?FuzzyResult<string> {
+  return require('./impl').fuzzyMatchImpl(text, queryText)
 }
 
 export { default as normalizeText } from './normalizeText'
