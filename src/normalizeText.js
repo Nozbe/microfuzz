@@ -1,12 +1,15 @@
 // @flow
 
-// Normalizes text so that it's suitable to comparisons, search, etc.:
-// turns into lowercase, removes diacritics, extra whitespace, etc...
-
 const diacriticsRegex = /[\u0300-\u036f]/g
 const regexŁ = /ł/g
 const regexÑ = /ñ/g
 
+/**
+ * Normalizes text so that it's suitable to comparisons, sorting, search, etc. by:
+ * - turning into lowercase
+ * - removing diacritics
+ * - removing extra whitespace
+ */
 export default function normalizeText(string: string): string {
   return (
     string

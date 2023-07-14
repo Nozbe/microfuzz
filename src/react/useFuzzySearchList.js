@@ -12,6 +12,15 @@ export type UseFuzzySearchListOptions<T, U> = $Exact<{
   strategy?: FuzzySearchStrategy,
 }>
 
+/**
+ * Hook for fuzzy searching `list` against `queryText` and mapping the results with `mapResultItem`.
+ *
+ * If `queryText` is blank, `list` is returned in whole.
+ *
+ * See `createFuzzySearch` for more details. This hook simply wraps it (with memoization) in a React hook.
+ *
+ * For best performance, `getText` and `mapResultItem` functions should be memoized by the user.
+ */
 export default function useFuzzySearchList<T, U>({
   list,
   key,

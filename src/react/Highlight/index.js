@@ -17,6 +17,14 @@ const FullSelection: HighlightRanges = [[0, Number.MAX_VALUE]]
 
 const defaultStyle: Style = { backgroundColor: 'rgba(245,220,0,.25)' }
 
+/**
+ * Highlights `text` at `ranges`.
+ *
+ * To override default styling, pass `style` and `className` or use `createHighlightComponent` to
+ * create a custom component with default styles overriden.
+ *
+ * To higlight all of text, pass `ranges={Highlight.FullSelection}`.
+ */
 const Highlight: React$StatelessFunctionalComponent<Props> = (props) => {
   const { text, indices, style, className } = props
 
@@ -68,6 +76,10 @@ const ExportedHighlight: HighlightExport = Object.assign((memo(Highlight): any),
 
 export default ExportedHighlight
 
+/**
+ * Creates a variant of `<Highlight />` component with default styles set to `customStyle` and
+ * `customClassName`.
+ */
 export function createHighlightComponent(
   customStyle: Style,
   customClassName: ClassName,

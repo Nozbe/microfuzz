@@ -33,20 +33,37 @@ Note:
 
 */
 
-export type Range = [/* first index */ number, /* last index */ number]
+/**
+ * Range of indices in a string, [index of first character, index of last character]
+ */
+export type Range = [number, number]
+
+/**
+ * List of character ranges in a string that should be highlighted
+ */
 export type HighlightRanges = Range[]
 
+/**
+ * List of fuzzy search matches (ranges of matching characters) for an item. This usually has one item, but can have more if `getText`
+ * was used to return multiple strings for an item.
+ */
 export type FuzzyMatches = Array<?HighlightRanges>
-export type FuzzyResult<T> = $Exact<{
-  item: T,
-  score: number /* lower = better match (think "error level") */,
-  matches: FuzzyMatches,
-}>
 
-export type FuzzySearchStrategy =
-  | 'off' // no fuzzy search, only contains query/contains words criteria are used
-  | 'smart' // (default) matches letters in order, but poor quality matches are ignored
-  | 'aggressive' // matches letters in order with no restrictions
+/**
+ * Result of fuzzy matching `queryText` against an item.
+ *
+ * `score` - lower = better match (think "error level")
+ */
+export type FuzzyResult<T> = $Exact<{ item: T, score: number, matches: FuzzyMatches }>
+
+/**
+ * Strategy for fuzzy search
+ *
+ * 'off'        - no fuzzy search, only matches if item contains/starts with query/contains query words
+ * 'smart'      - (default) matches letters in order, but poor quality matches are ignored
+ * 'aggressive' - matches letters in order with no restrictions (classic fuzzy search)
+ */
+export type FuzzySearchStrategy = 'off' | 'smart' | 'aggressive'
 
 export type FuzzySearchOptions = $Exact<{
   key?: string,
@@ -56,6 +73,29 @@ export type FuzzySearchOptions = $Exact<{
 
 export type FuzzySearcher<T> = (string) => Array<FuzzyResult<T>>
 
+/**
+ * Creates a fuzzy search function that can be used to search `list` by passing `queryText` to it:
+ *
+ * ```js
+ * const fuzzySearch = createFuzzySearch(list)
+ * const results = fuzzySearch(queryText)
+ * ```
+ *
+ * Only matching items will be returned, and they will be sorted by how well they match `queryText`.
+ *
+ * If `list` is an array of strings, it can be searched as-is. Otherwise pass to `options`:
+ *
+ * ```js
+ * // search by `text` property
+ * { key: 'text' }
+ * // OR:
+ * { getText: (item) => [item.text] }
+ * // search by multiple properties:
+ * { getText: (item) => [item.text, item.otherText] }
+ * ```
+ *
+ * If you use React, use `useFuzzySearchList` hook for convenience.
+ */
 export default function createFuzzySearch<Element>(
   list: Element[],
   options?: FuzzySearchOptions = ({}: any),
@@ -63,6 +103,11 @@ export default function createFuzzySearch<Element>(
   return require('./impl').createFuzzySearchImpl(list, options)
 }
 
+/**
+ * Runs a one-off fuzzy search matching on `text` against `queryText`.
+ *
+ * Use `createFuzzySearch` whenever you have a list of items to search.
+ */
 export function fuzzyMatch(text: string, queryText: string): ?FuzzyResult<string> {
   return require('./impl').fuzzyMatchImpl(text, queryText)
 }
