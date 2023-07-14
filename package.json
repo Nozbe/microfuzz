@@ -1,6 +1,6 @@
 {
   "name": "@nozbe/microfuzz",
-  "description": "A tiny library for fuzzy search",
+  "description": "A tiny, simple, fast fuzzy search library",
   "version": "0.1.5",
   "scripts": {
     "up": "yarn",
