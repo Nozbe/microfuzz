@@ -8,7 +8,8 @@
     "ci": "npm run ci:check",
     "flow": "flow check --max-warnings=0 --color=always",
     "eslint": "eslint ./src -c ./.eslintrc.js --cache --cache-location ./.cache/.eslintcache",
-    "test": "jest"
+    "test": "jest",
+    "build": "rm -fr dist && babel src --out-dir dist --ignore '**/__tests__' --copy-files"
   },
   "keywords": [
     "fuzzy search",
@@ -39,7 +40,7 @@
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.0",
     "@babel/eslint-parser": "^7.19.1",
-    "@babel/plugin-transform-flow-strip-types": "^7.22.5",
+    "@babel/plugin-transform-flow-comments": "^7.22.5",
     "@babel/plugin-transform-react-jsx": "^7.21.0",
     "@babel/preset-env": "^7.22.9",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
