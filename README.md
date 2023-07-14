@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/Nozbe/microfuzz/raw/master/assets/nozbe_demo.gif" alt="WatermelonDB" width="624" />
+</p>
+
 <h1 align="center">
   microfuzz
 </h1>
