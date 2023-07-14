@@ -27,7 +27,7 @@
 |   | microfuzz |
 | - | ------------ |
 | 🤓 | **Fuzzy search**. Power users love it |
-| 🗜️ | **Tiny**. _TODO_ KB gzipped |
+| 🗜️ | **Tiny**. 2KB gzipped |
 | ✅ | **Simple**. Only a few options, reasonable defaults |
 | ⚡️ | **Fast**. Filter thousands of items in milliseconds |
 | 🧰 | **Framework-agnostic**. Plain JS, no dependencies |
