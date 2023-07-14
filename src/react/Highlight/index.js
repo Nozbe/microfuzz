@@ -8,7 +8,7 @@ type ClassName = ?string
 
 type Props = $Exact<{
   text: string,
-  indices: ?HighlightRanges,
+  ranges: ?HighlightRanges,
   style?: Style,
   className?: ClassName,
 }>
@@ -26,16 +26,16 @@ const defaultStyle: Style = { backgroundColor: 'rgba(245,220,0,.25)' }
  * To higlight all of text, pass `ranges={Highlight.FullSelection}`.
  */
 const Highlight: React$StatelessFunctionalComponent<Props> = (props) => {
-  const { text, indices, style, className } = props
+  const { text, ranges, style, className } = props
 
-  if (!indices) {
+  if (!ranges) {
     return text
   }
 
   let lastHighlightedIndex = 0
   const nodes: Array<Node | string> = []
 
-  indices.forEach(([start, end]) => {
+  ranges.forEach(([start, end]) => {
     // Broken range, ignore
     if (start < lastHighlightedIndex || end < start) {
       // eslint-disable-next-line no-console
