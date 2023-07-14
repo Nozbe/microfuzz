@@ -251,7 +251,7 @@ function scoreConsecutiveLetters(
   return [score, indices]
 }
 
-export function matchFuzzilyImpl(text: string, query: string): ?FuzzyResult<string> {
+export function fuzzyMatchImpl(text: string, query: string): ?FuzzyResult<string> {
   const normalizedQuery = normalizeText(query)
   const queryWords = normalizedQuery.split(' ')
 
@@ -274,7 +274,7 @@ export function matchFuzzilyImpl(text: string, query: string): ?FuzzyResult<stri
   return null
 }
 
-export function fuzzySearchImpl<Element>(
+export function createFuzzySearchImpl<Element>(
   collection: Element[],
   options: FuzzySearchOptions,
 ): FuzzySearcher<Element> {

@@ -1,10 +1,10 @@
-import fuzzySearch, { normalizeText } from '../index'
+import createFuzzySearch, { normalizeText } from '../index'
 import { experimentalSmartFuzzyMatch } from '../impl'
 
-describe('fuzzySearch', () => {
+describe('createFuzzySearch', () => {
   const matches = (text, query, expectedScore, expectedIndices = null) => {
     // console.log(`${text} ${query}`)
-    const results = fuzzySearch([text])(query)
+    const results = createFuzzySearch([text])(query)
     expect(results.length).toBe(1)
     const [result] = results
     expect(result.item).toBe(text)
@@ -167,7 +167,7 @@ describe('fuzzySearch', () => {
     // matches('한국어', '한어', 2, [[0, 0], [2, 2]]) // FIXME: Fix highglighting for Hangul
   })
   const noMatch = (text, query) => {
-    const results = fuzzySearch([text])(query)
+    const results = createFuzzySearch([text])(query)
     expect(results.length).toBe(0)
   }
   it(`can not match everything, okay :(`, () => {
@@ -193,7 +193,7 @@ describe('fuzzySearch', () => {
   })
   it(`can search by key`, () => {
     expect(
-      fuzzySearch([{ t: 'foo' }, { t: 'foo2' }, { t: 'bar' }], { key: 't' })('foo'),
+      createFuzzySearch([{ t: 'foo' }, { t: 'foo2' }, { t: 'bar' }], { key: 't' })('foo'),
     ).toMatchObject([{ item: { t: 'foo' } }, { item: { t: 'foo2' } }])
   })
   it(`can search by many keys`, () => {
@@ -202,7 +202,7 @@ describe('fuzzySearch', () => {
     const u3 = { name: 'bar', alias: '3foo' }
     const u4 = { name: 'bar', alias: 'bar' }
     expect(
-      fuzzySearch([u1, u2, u3, u4], {
+      createFuzzySearch([u1, u2, u3, u4], {
         getText: (item) => [item.name, item.alias],
       })('foo'),
     ).toMatchObject([
@@ -216,7 +216,7 @@ describe('fuzzySearch', () => {
   })
   it(`sorts searches by score`, () => {
     expect(
-      fuzzySearch([
+      createFuzzySearch([
         '[Marketing] Żabka etc.',
         'Zabawny Katar',
         'Żal Betoniarka',
@@ -241,7 +241,7 @@ describe('fuzzySearch', () => {
   })
   it(`sorts searches by score for many keys`, () => {
     expect(
-      fuzzySearch(
+      createFuzzySearch(
         [
           { name: 'Matt', alias: 'Matthias Obst-Mölinger' },
           { name: 'Marco Couto', alias: null },
@@ -261,7 +261,7 @@ describe('fuzzySearch', () => {
     ])
   })
   it(`returns empty array for empty query`, () => {
-    expect(fuzzySearch(['a', 'b', 'c', 'd'])('')).toEqual([])
+    expect(createFuzzySearch(['a', 'b', 'c', 'd'])('')).toEqual([])
   })
   const matchesNew = (text, query, ...expectedIndices) => {
     const result = experimentalSmartFuzzyMatch(normalizeText(text), normalizeText(query))

@@ -56,15 +56,15 @@ export type FuzzySearchOptions = $Exact<{
 
 export type FuzzySearcher<T> = (string) => Array<FuzzyResult<T>>
 
-export default function fuzzySearch<Element>(
+export default function createFuzzySearch<Element>(
   collection: Element[],
   options?: FuzzySearchOptions = ({}: any),
 ): FuzzySearcher<Element> {
-  return require('./impl').fuzzySearchImpl(collection, options)
+  return require('./impl').createFuzzySearchImpl(collection, options)
 }
 
-export function matchFuzzily(text: string, query: string): ?FuzzyResult<string> {
-  return require('./impl').matchFuzzilyImpl(text, query)
+export function fuzzyMatch(text: string, query: string): ?FuzzyResult<string> {
+  return require('./impl').fuzzyMatchImpl(text, query)
 }
 
 export { default as normalizeText } from './normalizeText'
