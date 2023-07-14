@@ -9,7 +9,7 @@
     "flow": "flow check --max-warnings=0 --color=always",
     "eslint": "eslint ./src -c ./.eslintrc.js --cache --cache-location ./.cache/.eslintcache",
     "test": "jest",
-    "build": "rm -fr dist && babel src --out-dir dist --ignore '**/__tests__' --copy-files"
+    "build": "rm -fr dist && babel src --out-dir dist --ignore 'src/__tests__' --copy-files --no-copy-ignored"
   },
   "keywords": [
     "fuzzy search",
@@ -36,6 +36,17 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
+  "files": [
+    "dist",
+    "src",
+    "react.js",
+    "react.d.ts",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "devDependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.0",

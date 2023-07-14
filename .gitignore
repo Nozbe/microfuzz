@@ -9,6 +9,7 @@ lerna-debug.log
 
 dist/
 dev/
+package/
 
 *.tgz
 coverage/
