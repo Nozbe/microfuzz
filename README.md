@@ -52,6 +52,10 @@ General idea of how `microfuzz` works:
 
 `microfuzz` is not a one-size-fits-all solution (see [_Alternatives to consider_](#alternatives-to-consider)).
 
+## Demo
+
+[**➡️ See demo**](https://nozbe.github.io/microfuzz/)
+
 ## Using microfuzz (plain JS)
 
 ```js
@@ -130,7 +134,7 @@ Feel free to contribute improvements to sorting heuristics or alternative search
 Alternatives:
 
 - [Fuse.js](https://github.com/krisk/Fuse) - popular implementation with **many more options**, including extended search and indexing. However, while its scoring (sorting) is much more sophisticated in theory, I found it unsatisfactory in practice.
-- [fuzzysort](https://github.com/farzher/fuzzysort) - optimized for fuzzy searching lists of file names/file paths, but I don't like its scoring for natural language labels
+- [fuzzysort](https://github.com/farzher/fuzzysort) - faster and really good for fuzzy searching lists of file names/file paths, but I don't like its scoring for natural language labels. I borrowed the test data from fuzzysort so you can compare both demos side by side.
 - [MiniSearch](https://www.npmjs.com/package/minisearch)
 - [fuzzy](https://github.com/mattyork/fuzzy)
 - [fuzzy-search](https://github.com/wouterrutgers/fuzzy-search) - an even simpler implementation than microfuzz
