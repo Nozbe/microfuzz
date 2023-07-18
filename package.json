@@ -1,7 +1,7 @@
 {
   "name": "@nozbe/microfuzz",
   "description": "A tiny, simple, fast fuzzy search library",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "scripts": {
     "up": "yarn",
     "ci:check": "concurrently -n 'test,eslint,flow,ts' -c 'auto' 'npm run test' 'npm run eslint' 'npm run flow' 'npm run ts' --kill-others-on-fail",
