@@ -16,6 +16,7 @@ git push && git push --tags
 
 # update docs
 git checkout gh-pages
+git merge main
 cd demo && yarn gh-pages
 # commit result and push
 ```
