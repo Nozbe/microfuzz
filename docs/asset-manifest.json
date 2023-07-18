@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.6ac9438d.css",
-    "main.js": "/static/js/main.ae9837f8.js",
-    "index.html": "/index.html",
-    "main.6ac9438d.css.map": "/static/css/main.6ac9438d.css.map",
-    "main.ae9837f8.js.map": "/static/js/main.ae9837f8.js.map"
+    "main.css": "/microfuzz/static/css/main.6ac9438d.css",
+    "main.js": "/microfuzz/static/js/main.ae9837f8.js",
+    "index.html": "/microfuzz/index.html",
+    "main.6ac9438d.css.map": "/microfuzz/static/css/main.6ac9438d.css.map",
+    "main.ae9837f8.js.map": "/microfuzz/static/js/main.ae9837f8.js.map"
   },
   "entrypoints": [
     "static/css/main.6ac9438d.css",
