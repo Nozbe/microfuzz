@@ -9,7 +9,7 @@ const strategies = ['off', 'smart', 'aggressive']
 const mapResultItem = ({ item, matches: [highlightRanges] }) => [item, highlightRanges]
 
 function App() {
-  const [datasetName, setDatasetName] = React.useState('hearthstone')
+  const [datasetName, setDatasetName] = React.useState('companies')
   const dataset = testdata[datasetName]
 
   const [queryText, setQueryText] = React.useState('')
