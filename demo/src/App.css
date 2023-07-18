@@ -1,38 +1,77 @@
-.App {
-  text-align: center;
+.app {
+  margin: 0 auto;
+  /* width: 100vw; */
+  padding: 15px;
+  max-width: 850px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.tabs-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 10px;
+  margin: 20px 0;
 }
 
-.App-link {
-  color: #61dafb;
+.tabs {
+  padding-left: 0;
+  margin-bottom: 15px;
+  border: 1px solid #ADBBC7;
+  border-top-color: #7F8B99;
+  border-left-color: #7F8B99;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tabs ul {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.tabs li {
+  list-style: none;
+  margin: 0;
+}
+
+.tabs button {
+  appearance: none;
+  border: none;
+  background: none;
+  font-size: 16px;
+  border: 1px solid #7F8B99;
+  border-left: 0;
+  padding: 5px 10px;
+  margin-top: -1px;
+}
+
+.tabs li:last-child button {
+  border-bottom-right-radius: 3px;
+}
+
+.tabs button:hover {
+  background: #E6ECF0;
+  cursor: pointer;
+}
+
+.tabs button[data-selected="true"] {
+  background: #E6ECF0;
+}
+
+.search input {
+  width: 100%;
+  border: 1px solid #7F8B99;
+  border-radius: 8px;
+  font-size: 24px;
+  padding: 10px 18px;
+  box-shadow: 1px 1px 0 #ADBBC7;
+}
+
+.warning {
+  background-color: rgba(255, 150, 0, .15);
+  border: 1px solid rgb(255, 150, 0);
+  border-radius: 8px;
+  padding: 10px 18px;
 }
