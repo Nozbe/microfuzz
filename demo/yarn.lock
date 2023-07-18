@@ -1627,6 +1627,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@nozbe/microfuzz@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@nozbe/microfuzz/-/microfuzz-0.1.5.tgz#681494ec041094370228a5a2bd4442e8688d434f"
+  integrity sha512-8Y8T79ZecTm+SDriRHInI7Y8U07TsUAhdJXSmJ0uqMKgAYjP6yxD+h11O1JQcPgQBJNXtM2KOjomffXDwHaKhg==
+
 "@pmmmwh/react-refresh-webpack-plugin@^0.5.3":
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.10.tgz#2eba163b8e7dbabb4ce3609ab5e32ab63dda3ef8"

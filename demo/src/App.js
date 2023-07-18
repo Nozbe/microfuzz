@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { useFuzzySearchList, Highlight } from './microfuzz/react'
+import { useFuzzySearchList, Highlight } from '@nozbe/microfuzz/react'
 import testdata from './testdata'
 
 const testdataKeys = Object.keys(testdata)
