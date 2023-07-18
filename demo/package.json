@@ -11,6 +11,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "gh-pages": "yarn build && cd .. && rm -fr docs && cp -r demo/build docs",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
