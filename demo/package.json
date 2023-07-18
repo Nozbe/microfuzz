@@ -8,10 +8,11 @@
     "react-scripts": "5.0.1",
     "@nozbe/microfuzz": "0.1.5"
   },
+  "homepage": "https://nozbe.github.io/microfuzz/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "gh-pages": "yarn build && cd .. && rm -fr docs && cp -r demo/build docs",
+    "gh-pages": "yarn build && cd .. && rm -fr docs && cp -r demo/build docs && touch docs/.nojekyll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
