@@ -78,7 +78,7 @@ const fuzzySearch = createFuzzySearch(list, {
   // search by `name` property
   key: 'name',
   // search by `description.text` property
-  getText: (item) => [item.description.text]
+  getText: (item) => [item.description.text],
   // search by multiple properties:
   getText: (item) => [item.name, item.description.text]
 })
