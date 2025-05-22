@@ -94,10 +94,12 @@ export type FuzzySearcher<T> = (string) => Array<FuzzyResult<T>>
  *
  * If you use React, use `useFuzzySearchList` hook for convenience.
  */
-export default function createFuzzySearch<Element>(
+export function createFuzzySearch<Element>(
   list: Element[],
   options?: FuzzySearchOptions,
 ): FuzzySearcher<Element>
+
+export default createFuzzySearch
 
 /**
  * Runs a one-off fuzzy search matching on `text` against `queryText`.
